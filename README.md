@@ -1,0 +1,2 @@
+# Bloglite
+Blogging app
