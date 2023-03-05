@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Bloglite</title>
+</head>
+<body>
+    <h1 align="center">Bloglite</h1>
+    <br>
+    <div align="center">
+        <br>
+        <a  href="/{{user.username}}/dashboard">Dashboard</a>
+    </div>
+    <br>
+    <br>
+    <div align = "center">
+        <form action="/{{user.username}}/create_post" method="post" enctype="multipart/form-data">
+            <textarea type="text" name="title" placeholder="Enter Title" required="required" cols="50"></textarea>
+            <br>
+            <br>
+            <textarea name="content" placeholder="Write Content" required="required" rows="10" cols="50"></textarea>
+            <br>
+            <br>
+            <input type="file" name="image" placeholder="Image" accept="image/*"/>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Create Post</button>
+        </form>
+    </div>
+</body>
+</html>

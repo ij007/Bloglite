@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Following</title>
+</head>
+<body>
+    <h1 align="center">Bloglite</h1>
+    <br>
+    <br>
+    <div>
+        {% if user.profile_picture %}
+            <img src="\static\profile_pictures\{{user.profile_picture}}" alt="Profile Picture" width="200" height="200">
+        
+        {% else %}
+            <img src="\static\profile_pictures/default.png" alt="Profile Picture" width="200" height="200">
+        {% endif %}
+        <div>
+            <br>
+            <a href="/{{user.username}}/dashboard">Dashboard</a>
+            <br>
+            <br>
+            <a href="/{{user.username}}">Profile</a>
+            <br>
+            <br>
+            <a href="/{{user.username}}/following">Following | </a>
+            <a href="/{{user.username}}/followers">Followers</a>
+            <br>
+            <br>
+            <a href="/{{user.username}}/posts">Posts</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <h1>Following</h1>
+    <br>
+    {% for profile in following %}
+        <div>
+            <img src="\static\profile_pictures\{{profile.profile_picture}}" alt="Profile Picture" width="100" height="100"><a href="/{{user.username}}/profile/{{profile.username}}" ><h1>{{profile.first_name}} {{profile.last_name}}</h1></a>
+            <a href="/{{user.username}}/unfollow/{{profile.username}}">Unfollow</a>
+        </div>
+        <br>
+    {% endfor %}
+</body>
+</html>

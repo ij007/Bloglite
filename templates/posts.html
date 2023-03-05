@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>posts</title>
+</head>
+<body>
+    <h1 align="center">Bloglite</h1>
+    <br>
+    <a href="/{{user.username}}">Profile</a>
+    <br>
+    <a href="/{{user.username}}/dashboard">Dashboard</a>
+    <h1 align="center">{{user.first_name}} {{user.last_name}}'s all posts</h1>
+    <br>
+    <div>
+        {% if not mssg %}
+        {% for post in posts %}
+        
+        <h2>{{post.title|safe}}</h2>
+        <p>{{post.content|safe}}</p>
+        {% if post.image %}
+        <img src="\static\post_images\{{post.post_id}}.png" alt="Post Image" width="200" height="200">
+        <br>
+        {% endif %}
+        <a href="/{{user.username}}/edit_post/{{post.post_id}}">Edit Post</a> | 
+        <a href="/{{user.username}}/delete_post/{{post.post_id}}">Delete Post</a>
+
+        {% endfor %}
+        {% else %}
+        <h5>{{mssg}}</h5>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

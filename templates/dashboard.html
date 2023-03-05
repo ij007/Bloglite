@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboardstyle.css">
+</head>
+<body>
+    <h1 align="center">Bloglite</h1>
+    <div>
+        <div class="topnav">
+            <a href="/{{user.username}}">{{user.first_name}} {{user.last_name}}</a>
+            <a href="/{{user.username}}/create_post">Create Post</a>
+            <!--search box-->
+            <div class="search-container">
+                <form action="/{{user.username}}/search" method="POST">
+                    <input type="text" name="search" placeholder="Search">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <a href="/">Logout</a>
+        </div>
+        {% if mssg %}
+            <br>
+            <h5>{{mssg}}</h5>
+        {% endif %}
+        <br>
+        <br>
+        <h1 align="center">Blogs</h1>
+        {% for post in posts %}
+            <div class="content">
+                <a class="username" href="/{{user.username}}/profile/{{post.username}}">@{{post.username}}</a>
+                <br>
+                <h2 class="title">{{post.title|safe}}</h2>
+                <p class="inner-content">{{post.content|safe}}</p>
+                <br>
+                {% if post.image %}
+                    <img src="\static\post_images\{{post.image}}" alt="Post Image" width="100" height="100">
+                    <br>
+                {% endif %}
+                <div class="like-container">
+                    {% if post.post_id in liked_posts %}
+                        <a href="/{{user.username}}/post/unlike/{{post.post_id}}">Unlike</a>
+                    {% else %}
+                        <a href="/{{user.username}}/post/like/{{post.post_id}}">Like</a>
+                    {% endif %}
+                    <br>
+                    <form action="/{{user.username}}/post/comment/{{post.post_id}}" method="POST">
+                        <input type="text" name="comment" placeholder="Comment">
+                        <input type="submit" value="Comment">
+                    </form>
+                </div>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+   
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Edit Post</title>
+</head>
+<body>
+    <h1 align="center">Bloglite</h1>
+    <br>
+    <div align="center">
+        <br>
+        <a  href="/{{user.username}}/dashboard">Dashboard</a>
+    </div>
+    <br>
+    <br>
+    <div align = "center">
+        <form action="/{{user.username}}/edit_post/{{post.post_id}}" method="post" enctype="multipart/form-data">
+            <textarea type="text" name="title" required="required" cols="50">{{post.title|safe}}</textarea>
+            <br>
+            <br>
+            <textarea name="content" required="required" rows="10" cols="50">{{post.content|safe}}</textarea>
+            <br>
+            <br>
+            <input type="file" name="image" placeholder="Image" accept="image/*"/>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Save Post</button>
+        </form>
+    </div>
+</body>
+</html>
